@@ -1,129 +1,136 @@
-Job Finder Bot – Full Setup Guide
+**Job Finder Bot**
+--------------------
+This project automates job search using Google Custom Search API, stores results in CSV, and emails them daily using Gmail. Deployed on Google Cloud Compute Engine (VM) with cron.
 
-This project automates job searching by scraping job portals, saving results in a CSV file, and emailing them daily using cron jobs.
+Features
 
-It includes:
+Fetches job listings using Google Programmable Search Engine (CSE)
 
-Job scraping
-CSV export
-Gmail email alerts
-Cron automation
-Full GitHub-ready project structure
+Saves results into CSV with timestamp
 
+Emails results daily using Gmail SMTP + App Password
 
-1. Prerequisites
+Runs automatically via cron job on GCP VM
 
-Make sure you have installed:
-Python 3.8+
-pip (Python package manager)
-git
-nano/vim (for editing files)
-Check versions:
+Setup Guide
+-------------------
+1. Create a Compute Engine VM (GCP)
 
-python3 --version
-pip3 --version
-git --version
+Go to Google Cloud Console
 
+Navigate to Compute Engine → VM instances
 
+Create a VM (Ubuntu recommended)
 
-2. Clone or Create Project
-mkdir job-finder-bot
-cd job-finder-bot
+Machine type: e2-medium (2 vCPU, 4 GB RAM)
 
+Allow HTTP/HTTPS traffic
 
-3. Project Structure
-job-finder-bot/
-│── job_finder.py         # Main Python script
-│── run_job_finder.sh     # Shell script to execute bot
-│── requirements.txt      # Dependencies
-│── .jobbot.env           # Environment variables (secrets)
-│── README.md             # Documentation
-│── .gitignore            # Ignore sensitive files
-│── jobbot_output/        # Output folder (CSV + logs)
+Connect via SSH
+
+Update system:
+
+sudo apt update && sudo apt upgrade -y
 
 
-4.Setup Virtual Environment
-```
-python3 -m venv venv
-source venv/bin/activate
-```
 Install dependencies:
 
-```
-pip install requests beautifulsoup4 pandas python-dotenv
-```
+sudo apt install git python3 python3-pip -y
 
-Save them:
-
-```
-pip freeze > requirements.txt
-```
-
-5. Gmail App Password Setup
-
-Since Google blocks normal passwords, you must use App Passwords:
-
-Enable 2-Step Verification in your Gmail.
-
-Go to Google App Passwords (https://myaccount.google.com/apppasswords).
-
-Create a password for "Mail → Other".
-
-Copy the 16-character password
-
-6. Create .jobbot.env
-EMAIL_FROM=yourgmail@gmail.com
-EMAIL_TO=yourgmail@gmail.com
-APP_PW=abcd efgh ijkl mnop
-
-7. Main Python Script – job_finder.py
-
-This script will:
-
-Scrape job portals
-
-Save results in jobbot_output/jobs_YYYYMMDD_HHMMSS.csv
-
-Send results via email
+2. Clone Repo & Setup Project
+git clone https://github.com/yourusername/job-finder-bot.git
+cd job-finder-bot
+mkdir -p jobbot_output
 
 
-8. Shell Script – run_job_finder.sh
-```
-#!/bin/bash
-cd /home/<your-username>/job-finder-bot
-source venv/bin/activate
-python job_finder.py
-````
+Install Python packages:
 
-Make it executable:
-```
-chmod +x run_job_finder.sh
-```
-9. Automation with Cron
-----------
-Edit cron jobs:
+pip3 install -r requirements.txt
+
+3. Enable Gmail App Password
+
+Go to Google Account → Security
+
+Enable 2-Step Verification
+
+Go to App passwords
+
+Create a new app password (16 characters, e.g., abdv cwgq brzs ohiz)
+
+4. Enable Google Custom Search API
+
+Go to Google Cloud API Library
+
+Enable Custom Search API
+
+Go to Credentials → Create API Key
+
+5. Create Programmable Search Engine (CSE)
+
+Go to Programmable Search
+
+Click Add → Add job sites (e.g. *.linkedin.com, *.naukri.com, *.indeed.com)
+
+Get your CSE ID
+
+6. Configure Environment File
+
+Create .jobbot.env:
+
+
+7. Python Script (job_finder.py)
+
+8. Run Script Manually
+./run_job_finder.sh
+
+
+ You should see:
+
+Saved: /home/devadin/jobbot_output/jobs_20250816_150527.csv
+Emailed: yes
+
+9. Setup Cron Job
+
+Open crontab:
 
 crontab -e
-Run every day at 9 AM:
 
-```
-0 9 * * * /home/<your-username>/job-finder-bot/run_job_finder.sh >> /home/<your-username>/job-finder-bot/jobbot_output/cron.log 2>&1
 
-```
-Check active jobs:
+Add job (runs daily at 9 AM):
 
-```
-crontab -l
-```
-Check logs in real-time:
+````
 
-```
-tail -f /home/<your-username>/job-finder-bot/jobbot_output/cron.log
-```
-Testing
--------
+0 9 * * * /home/devadin/run_job_finder.sh >> /home/devadin/jobbot_output/cron.log 2>&1
+````
 
-Run manually once:
-```
-./run_job_finder.sh
-```
+Check logs:
+
+tail -f /home/devadin/jobbot_output/cron.log
+
+ File Structure
+job-finder-bot/
+│── job_finder.py
+│── run_job_finder.sh
+│── .jobbot.env
+│── requirements.txt
+│── README.md
+└── jobbot_output/
+
+Requirements
+
+Python 3.x
+
+Google Cloud VM (Ubuntu)
+
+Gmail with App Password
+
+Google Custom Search API + CSE
+
+
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/061e4c6e-4acd-4c5d-a9db-4f3f1e40b4b3" />
+
+
+
+
+
+
