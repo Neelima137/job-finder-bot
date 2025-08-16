@@ -126,6 +126,9 @@ Gmail with App Password
 
 Google Custom Search API + CSE
 
+<img width="1459" height="770" alt="image" src="https://github.com/user-attachments/assets/9ff24db4-8640-4ef7-82ed-e9275073597a" />
+
+
 
 <img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/061e4c6e-4acd-4c5d-a9db-4f3f1e40b4b3" />
 
