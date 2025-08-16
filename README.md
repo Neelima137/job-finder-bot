@@ -109,11 +109,11 @@ tail -f /home/devadin/jobbot_output/cron.log
 
  File Structure
 job-finder-bot/
-│── job_finder.py
-│── run_job_finder.sh
-│── .jobbot.env
-│── requirements.txt
-│── README.md
+│── job_finder.py /
+│── run_job_finder.sh/
+│── .jobbot.env/
+│── requirements.txt/
+│── README.md/
 └── jobbot_output/
 
 Requirements
