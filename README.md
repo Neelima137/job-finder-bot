@@ -16,7 +16,7 @@ Setup Guide
 -------------------
 1. Create a Compute Engine VM (GCP)
 
-Go to Google Cloud Console
+Go to Google Cloud Console (https://console.cloud.google.com/)
 
 Navigate to Compute Engine → VM instances
 
@@ -49,7 +49,7 @@ pip3 install -r requirements.txt
 
 3. Enable Gmail App Password
 
-Go to Google Account → Security
+Go to Google Account → Security (https://myaccount.google.com/security)
 
 Enable 2-Step Verification
 
@@ -59,15 +59,15 @@ Create a new app password (16 characters, e.g., abdv cwgq brzs ohiz)
 
 4. Enable Google Custom Search API
 
-Go to Google Cloud API Library
+Go to Google Cloud API Library (https://console.cloud.google.com/apis/library)
 
 Enable Custom Search API
 
 Go to Credentials → Create API Key
 
-5. Create Programmable Search Engine (CSE)
+5. Create Programmable Search Engine (CSE) 
 
-Go to Programmable Search
+Go to Programmable Search (https://programmablesearchengine.google.com/)
 
 Click Add → Add job sites (e.g. *.linkedin.com, *.naukri.com, *.indeed.com)
 
