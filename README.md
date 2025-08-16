@@ -86,7 +86,7 @@ Create .jobbot.env:
 
  You should see:
 
-Saved: /home/devadin/jobbot_output/jobs_20250816_150527.csv
+Saved: /home//jobbot_output/jobs_20250816_150527.csv
 Emailed: yes
 
 9. Setup Cron Job
@@ -100,12 +100,12 @@ Add job (runs daily at 9 AM):
 
 ````
 
-0 9 * * * /home/devadin/run_job_finder.sh >> /home/devadin/jobbot_output/cron.log 2>&1
+0 9 * * * /home//run_job_finder.sh >> /home//jobbot_output/cron.log 2>&1
 ````
 
 Check logs:
 
-tail -f /home/devadin/jobbot_output/cron.log
+tail -f /home//jobbot_output/cron.log
 
  File Structure
 job-finder-bot \
